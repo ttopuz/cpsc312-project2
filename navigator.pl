@@ -35,11 +35,11 @@ course(cpen, cpen491, 10, core, 4).
 
 
 %breadth electives
-course(cpen, elec202, 4, electives, [Y]):- member(Y, [3,4])
-course(cpen, elec301, 4, electives, [Y]):- member(Y, [3,4])
-course(cpen, elec315, 4, electives, [Y]):- member(Y, [3,4])
-course(cpen, cpen321, 4, electives, [Y]):- member(Y, [3,4])
-course(cpen, elec331, 4, electives, [Y]):- member(Y, [3,4])
+course(cpen, elec202, 4, electives, [Y]):- member(Y, [3,4]).
+course(cpen, elec301, 4, electives, [Y]):- member(Y, [3,4]).
+course(cpen, elec315, 4, electives, [Y]):- member(Y, [3,4]).
+course(cpen, cpen321, 4, electives, [Y]):- member(Y, [3,4]).
+course(cpen, elec331, 4, electives, [Y]):- member(Y, [3,4]).
 
 %science electives
 course(cpen, phys250, 3, science_electives, 4). 
