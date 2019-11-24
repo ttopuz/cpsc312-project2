@@ -1,3 +1,5 @@
+getcourses([Coursespassed]):- write("type the courses you have passed assuming you passed all of your 1st year courses!"),nl, read(Coursespassed).
+getcourses([]).
 
 %-----------------------------------------------
 %main data included
