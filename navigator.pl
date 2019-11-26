@@ -1,31 +1,22 @@
-getcourses:- write("enter course that you have passed"),nl, read(Courses), nb_setval(trans, Courses).
+getcourses:- writeln("enter course"),flush_output(current_output), readln(Courses), nb_setval(trans, Courses).
 
-deneme:-getcourses,nb_getval(trans, Courses),write(Courses).
+deneme:-getcourses,nb_getval(trans, Courses).
 %-----------------------------------------------
 %checking if the peson passed the 2nd year
-second_year_checker([List,B,C,D,E,F,K,L,N]):-
-            write("indicate your electives at the end!"),
-            course(cpen, List, Z1, core, 2),
-            course(cpen, B , Z2, core, 2),
-            course(cpen, C, Z3, core, 2),
-            course(cpen, D, Z4, core, 2),
-            course(cpen, E, Z5, core, 2),
-            course(cpen, F, Z6, core, 2),
-            course(cpen, K, Z7, core, 2),
-            course(cpen, L, Z8, core, 2),
-            course(cpen, N, Z9, core, 2),
-            dif(List,B),dif(List,C), dif(List, D),dif(List,E),dif(List,F),dif(List,K),dif(List,L),dif(List,N),
-            dif(B,C), dif(B,D), dif(B,E), dif(B,F), dif(B,K), dif(B,L), dif(B,N),
-            dif(C,D), dif(C,E), dif(C,F), dif(C,K), dif(C,L), dif(C,N),
-            dif(D,E), dif(D,F), dif(D,K), dif(D,L), dif(D,N),
-            dif(E,F), dif(E,K), dif(E,L), dif(E,N),
-            dif(K,L), dif(K,N),
-            dif(L,N), 
-            %member(Y, [Coursespassed2]),
-            %course(cpen, Y, Z2, complementary_studies, 2),
-            A is Z1 + Z2 + Z3 + Z4 + Z5 + Z6 + Z7 + Z8 + Z9,
-            35 == A.
+second_year_checker:-
+            deneme,
+            nb_getval(trans, Courses),
+            member(cpen211, Courses),
+            member(cpen221, Courses),
+            member(cpen281, Courses),
+            member(cpen291, Courses),
+            member(cpsc261, Courses),
+            member(elec201, Courses),
+            member(math220, Courses),
+            member(math253, Courses),
+            member(math256, Courses).
 third_year_checker([A, B, C, D, E, K, L]).
+
 
 
 %----------------------------------------------
