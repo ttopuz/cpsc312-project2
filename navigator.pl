@@ -1,7 +1,34 @@
-getcourses([Coursespassed]):- write("type the courses you have passed assuming you passed all of your 1st year courses!"),nl, read(Coursespassed).
-getcourses([]).
+getcourses:- write("enter course that you have passed"),nl, read(Courses), nb_setval(trans, Courses).
 
+deneme:-getcourses,nb_getval(trans, Courses),write(Courses).
 %-----------------------------------------------
+%checking if the peson passed the 2nd year
+second_year_checker([List,B,C,D,E,F,K,L,N]):-
+            write("indicate your electives at the end!"),
+            course(cpen, List, Z1, core, 2),
+            course(cpen, B , Z2, core, 2),
+            course(cpen, C, Z3, core, 2),
+            course(cpen, D, Z4, core, 2),
+            course(cpen, E, Z5, core, 2),
+            course(cpen, F, Z6, core, 2),
+            course(cpen, K, Z7, core, 2),
+            course(cpen, L, Z8, core, 2),
+            course(cpen, N, Z9, core, 2),
+            dif(List,B),dif(List,C), dif(List, D),dif(List,E),dif(List,F),dif(List,K),dif(List,L),dif(List,N),
+            dif(B,C), dif(B,D), dif(B,E), dif(B,F), dif(B,K), dif(B,L), dif(B,N),
+            dif(C,D), dif(C,E), dif(C,F), dif(C,K), dif(C,L), dif(C,N),
+            dif(D,E), dif(D,F), dif(D,K), dif(D,L), dif(D,N),
+            dif(E,F), dif(E,K), dif(E,L), dif(E,N),
+            dif(K,L), dif(K,N),
+            dif(L,N), 
+            %member(Y, [Coursespassed2]),
+            %course(cpen, Y, Z2, complementary_studies, 2),
+            A is Z1 + Z2 + Z3 + Z4 + Z5 + Z6 + Z7 + Z8 + Z9,
+            35 == A.
+third_year_checker([A, B, C, D, E, K, L]).
+
+
+%----------------------------------------------
 %main data included
 
 
@@ -58,28 +85,26 @@ course(cpen, chem201, 3, science_electives, 4).
 course(cpen, chem251, 3, science_electives, 4).
 course(cpen, chem260, 3, science_electives, 4).
 
+course(cpen, apsc450, 2, complementary_studies, [Y]):- member(Y, [2,3]).
+course(cpen, [X], 3, complementary_studies, 2):-  member(X, [engl112, apsc201]).
+course(cpen, [X], 3, complementary_studies, 2):-  member(X, [chbe459, civl403, cpen481, elec481, mine396, mtrl455]).
+course(cpen, [X], 3, complementary_studies, 2):-  member(X, [apsc261, apsc262, apsc362, apsc377, apsc462, civl250, mech410T,mech410U]).
 
 
 %credits required 
-electi(cpen, complementary_studies, 9).
+electi(cpen, complementary_studies, 6).
 electi(cpen, electives, 31).
 electi(cpen, science_electives, 3).
 
 %second year pre_reqs
-pre_req([apsc160], cpen211).
-pre_req([apsc160], cpen221).
-pre_req([Y], cpen281):- member(Y, [apsc176, engl110, engl111, engl112, engl120, engl121, wrds150]).
 pre_req([Y, Z], cpsc261):- member(Y, [eece259, cpen211]),
                            member(Z, [eece210, cpen221]).
-pre_req([T, Y, Z], elec201):- member(T, [math101]),
-                              member(Y, [phys102, phys153, phys158]),
+pre_req([Z], elec201):- 
                               member(Z, [math225, math256, math265]).
 pre_req([Y, Z], cpen291) :- member(Y, [eece259, cpen211]),
                             member(Z, [eece251, elec201]).
-pre_req([Y], math220) :- member(Y, [math101, math103, math105, scie001, math121, math200, math217, math226, math253, math263]).
-pre_req([Y], math253) :- member(Y, [math101, math103, math105, scie001]).
-pre_req([T ,Y, Z], math256) :-  member(T, [math152, math221, math223]),
-                                member(Y, [math101, math103, math105, scie001]),
+pre_req([Y], math220) :- member(Y, [math200, math217, math226, math253, math263]).
+pre_req([T, Z], math256) :-  member(T, [math221, math223]),
                                 member(Z, [math220, math217, math226, math253, math263]).
 
 %third year pre_reqs
