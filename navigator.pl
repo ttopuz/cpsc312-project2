@@ -1,10 +1,9 @@
 %run deneme then for second year checker "cpen211 cpen221 cpen281 cpen291 elec201 cpsc261 math220 math253 math256" without ""s 
 %for third "cpen211 cpen221 cpen281 cpen291 elec201 cpsc261 math220 math253 math256 cpen311 cpen331 cpen391 elec221 cpsc221 elec221 math318"
+getcourses:- writeln("enter course"),flush_output(current_output), readln(Courses), nb_setval(trans, Courses), writeln("enter electives courses"),
+flush_output(current_output),readln(Elective_Courses), nb_setval(elctive, Elective_Courses).
 
-
-getcourses:- writeln("enter course"),flush_output(current_output), readln(Courses), nb_setval(trans, Courses).
-
-deneme:-getcourses.
+deneme:-nb_getval(elctive, Elective_Courses),write(Elective_Courses).
 %-----------------------------------------------
 %checking if the peson passed the 2nd year
 second_year_checker:-
@@ -18,7 +17,8 @@ second_year_checker:-
             member(math220, Courses),
             member(math253, Courses),
             member(math256, Courses),
-            write("you passed second year").
+            write("second year core courses are done"),
+            .
 
 second_year_checker:-
             nb_getval(trans, Courses),
@@ -47,7 +47,11 @@ fourth_year_checker:-
 
 deneme(X):-course(cpen, X, 4, core, 3).
 
-
+missing_courses(Course, Transcript, Ans) :-
+    course(Course,_,_),
+    pre_Reqs(P, Course),
+    \+ contained_in(P, Transcript),
+    Ans = P.
 %----------------------------------------------
 %main data included
 
@@ -78,10 +82,6 @@ course(cpen, apsc450, 2, core, 4).
 course(cpen, cpen481, 3, core, 4).
 course(cpen, cpen491, 10, core, 4).
 
-%cpen advanced
-
-
-
 %breadth electives
 course(cpen, elec202, 4, electives, [Y]):- member(Y, [3,4]).
 course(cpen, elec301, 4, electives, [Y]):- member(Y, [3,4]).
@@ -105,9 +105,8 @@ course(cpen, chem251, 3, science_electives, 4).
 course(cpen, chem260, 3, science_electives, 4).
 
 course(cpen, apsc450, 2, complementary_studies, [Y]):- member(Y, [2,3]).
-course(cpen, [X], 3, complementary_studies, 2):-  member(X, [engl112, apsc201]).
-course(cpen, [X], 3, complementary_studies, 2):-  member(X, [chbe459, civl403, cpen481, elec481, mine396, mtrl455]).
-course(cpen, [X], 3, complementary_studies, 2):-  member(X, [apsc261, apsc262, apsc362, apsc377, apsc462, civl250, mech410T,mech410U]).
+course(cpen, [X], 3, complementary_studies, 2):-  member(X, [apsc201,chbe459, civl403, cpen481, elec481, mine396, mtrl455,apsc261, apsc262, apsc362, apsc377, apsc462, civl250, mech410T,mech410U]).
+
 
 
 %credits required 
