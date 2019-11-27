@@ -1,11 +1,11 @@
 getcourses:- writeln("enter course"),flush_output(current_output), readln(Courses), nb_setval(trans, Courses).
 
-deneme:-getcourses,nb_getval(trans, Courses).
+deneme:-getcourses.
 %-----------------------------------------------
 %checking if the peson passed the 2nd year
 second_year_checker:-
-            deneme,
             nb_getval(trans, Courses),
+            write(Courses),
             member(cpen211, Courses),
             member(cpen221, Courses),
             member(cpen281, Courses),
@@ -14,9 +14,35 @@ second_year_checker:-
             member(elec201, Courses),
             member(math220, Courses),
             member(math253, Courses),
-            member(math256, Courses).
-third_year_checker([A, B, C, D, E, K, L]).
+            member(math256, Courses),
+            write("you passed second year").
 
+second_year_checker:-
+            nb_getval(trans, Courses),
+            writeln("missing courses:"),
+            writeln(Courses).
+
+
+third_year_checker:-
+            nb_getval(trans, Courses),
+            write(Courses),
+            member(cpen311, Courses),
+            member(cpen331, Courses),
+            member(cpen391, Courses),
+            member(elec221, Courses),
+            member(cpsc221, Courses),
+            (member(math318, Courses); member(math302, Courses);
+            member(stat302, Courses);
+            member(stat251, Courses)),
+            write("you passed third year").
+
+fourth_year_checker:-
+            nb_getval(trans, Courses),
+            member(apsc450, Courses),
+            member(cpen481, Courses),
+            member(cpen491, Courses).
+
+deneme(X):-course(cpen, X, 4, core, 3).
 
 
 %----------------------------------------------
@@ -42,7 +68,6 @@ course(cpen, cpen391, 6, core, 3).
 course(cpen, cpsc221, 4, core, 3).
 course(cpen, elec221, 4, core, 3).
 course(cpen, Elective, 3, core, 3):- Elective=math318; Elective=stat251; Elective=math302; Elective=stat302.
-
 
 
 %4th year cpen
