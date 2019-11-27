@@ -8,7 +8,6 @@ deneme:-getcourses.
 %checking if the peson passed the 2nd year
 second_year_checker:-
             nb_getval(trans, Courses),
-            write(Courses),
             member(cpen211, Courses),
             member(cpen221, Courses),
             member(cpen281, Courses),
@@ -28,7 +27,7 @@ second_year_checker:-
 
 third_year_checker:-
             nb_getval(trans, Courses),
-            write(Courses),
+            second_year_checker,
             member(cpen311, Courses),
             member(cpen331, Courses),
             member(cpen391, Courses),
