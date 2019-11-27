@@ -1,3 +1,6 @@
+%run deneme then for second year checker "cpen211 cpen221 cpen281 cpen291 elec201 cpsc261 math220 math253 math256" without ""s 
+
+
 getcourses:- writeln("enter course"),flush_output(current_output), readln(Courses), nb_setval(trans, Courses).
 
 deneme:-getcourses.
