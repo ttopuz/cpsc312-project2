@@ -18,7 +18,7 @@ second_year_checker:-
             member(math253, Courses),
             member(math256, Courses),
             write("second year core courses are done"),
-            .
+            member(Elective_Courses, course(cpen, [X], 3, complementary_studies, 2)).
 
 second_year_checker:-
             nb_getval(trans, Courses),
@@ -106,8 +106,6 @@ course(cpen, chem260, 3, science_electives, 4).
 
 course(cpen, apsc450, 2, complementary_studies, [Y]):- member(Y, [2,3]).
 course(cpen, [X], 3, complementary_studies, 2):-  member(X, [apsc201,chbe459, civl403, cpen481, elec481, mine396, mtrl455,apsc261, apsc262, apsc362, apsc377, apsc462, civl250, mech410T,mech410U]).
-
-
 
 %credits required 
 electi(cpen, complementary_studies, 6).
