@@ -76,9 +76,8 @@ creditCounter([H|T], Credits) :-
 
 checkPreReq(C):- 
     writeln("Enter the course that you would like to check its prereqs."),
-    readln(input),
-    course(input, _),
-    pre_req(C, input).
+    pre_req(P, C),
+    write(P).
 
 % course (course code, type)
 
