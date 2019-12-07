@@ -1,4 +1,5 @@
-% main function which takes input from the user and saves it to a global varaiable 
+% main function which takes input from the user and saves it to a global variable 
+% cpen211 cpen221 cpen281 cpsc261 elec201 cpen291 math220 math253 math256 apsc201 chbe459 (successfully passed 2nd year)
 degreeNavigator:-
     writeln("Welcome the Degree Navigator! Enter the courses you have taken so far."),
     flush_output(current_output),
